@@ -17,7 +17,7 @@ import {
 import { useNewFormControls } from "../api/NewFormControlState";
 import { FormMenu } from "./FormMenu";
 import { useService } from "../api/Service";
-export const Filler = () => {
+export const NewFiller = () => {
   const {
     showFoodForm,
     showBeerForm,
@@ -47,22 +47,7 @@ export const Filler = () => {
     handleLabeler,
     handleTypeLabel
   } = useNewFormControls();
-  const {
-    opportunities,
-    setOpportunities,
-    opportunity,
-    setOpportunity,
-    updateField,
-    data,
-    setData,
-    showLoading,
-    setShowLoading,
-    lineSurvey,
-    setLineSurvey,
-    createLineSurvey,
-    onChange,
-    handleSubmit
-  } = useService();
+  const { lineSurvey, createLineSurvey, onChange, handleSubmit } = useService();
   return (
     <>
       <FormMenu />
@@ -584,7 +569,7 @@ export const Filler = () => {
             </FormGroup>
           </Col>
         </Row>
-        <Row>
+        <Row form noGutters className="mt-3 mr-1 d-flex justify-content-end">
           <Button color="primary" type="submit" size="lg">
             Create New Line Survey
           </Button>

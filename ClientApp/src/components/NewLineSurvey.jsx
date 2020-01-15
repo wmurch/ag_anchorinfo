@@ -62,7 +62,7 @@ export const NewLineSurvey = () => {
           }
         }}
       >
-        <Row form noGutters className="d-flex justify-content-md-around">
+        <Row form noGutters className="mt-3 d-flex justify-content-start">
           <FormGroup inline className="m-md-1 p-md-1">
             <Label className="font-weight-bold">Tech Service Rep</Label>
             <Input
@@ -75,35 +75,35 @@ export const NewLineSurvey = () => {
             />
           </FormGroup>
         </Row>
-        <Row form noGutters className="d-flex justify-content-md-around">
-          <FormGroup sm="auto">
-            <Label className="font-weight-bold">Issue Date:</Label>
-            <Input
-              bsSize="sm"
-              type="date"
-              name="issueDate"
-              id="issueDate"
-              value={lineSurvey.issueDate}
-              onChange={onChange}
-            />
-          </FormGroup>
-          <FormGroup inline className="m-md-1 p-md-1">
-            <Label className="font-weight-bold">Rev. Date:</Label>
-            <Input
-              bsSize="sm"
-              type="date"
-              name="revDate"
-              id="revDate"
-              value={lineSurvey.revDate}
-              onChange={onChange}
-            />
-          </FormGroup>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Col>
+            <FormGroup sm="auto">
+              <Label className="font-weight-bold">Issue Date:</Label>
+              <Input
+                bsSize="sm"
+                type="date"
+                name="issueDate"
+                id="issueDate"
+                value={lineSurvey.issueDate}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup inline className="m-md-1 p-md-1">
+              <Label className="font-weight-bold">Rev. Date:</Label>
+              <Input
+                bsSize="sm"
+                type="date"
+                name="revDate"
+                id="revDate"
+                value={lineSurvey.revDate}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
         </Row>
-        <Row
-          form
-          noGutters
-          className="d-flex justify-content-center align-content-center"
-        >
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
           <Col>
             <FormGroup>
               <Label className="font-weight-bold">Company Name</Label>
@@ -131,7 +131,7 @@ export const NewLineSurvey = () => {
             </FormGroup>
           </Col>
         </Row>
-        <Row form className="m-md-1 p-md-1 d-flex justify-content-md-center">
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
           <Col>
             <FormGroup>
               <Label className="font-weight-bold">City</Label>
@@ -173,10 +173,10 @@ export const NewLineSurvey = () => {
             </FormGroup>
           </Col>
         </Row>
-        <Row form className="d-flex justify-content-md-center">
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
           <Label className="font-weight-bold">Contacts</Label>
         </Row>
-        <Row form className="d-flex justify-content-md-center">
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
           <Col>
             <FormGroup>
               <Label className="font-weight-bold" hidden>
@@ -229,9 +229,10 @@ export const NewLineSurvey = () => {
         </Row>
         {showFormButtons && (
           <>
-            <Row className="d-flex justify-content-md-around">
+            <Row form noGutters className="mt-3 d-flex justify-content-start">
               <Button
                 color="primary"
+                className="m-1"
                 size="lg"
                 onClick={() => {
                   setShowFoodForm(true);
@@ -245,6 +246,7 @@ export const NewLineSurvey = () => {
               </Button>
               <Button
                 color="primary"
+                className="m-1"
                 size="lg"
                 onClick={() => {
                   setShowBeerForm(true);
@@ -258,6 +260,7 @@ export const NewLineSurvey = () => {
               </Button>
               <Button
                 color="primary"
+                className="m-1"
                 size="lg"
                 onClick={() => {
                   setShowLiquorForm(true);
@@ -272,7 +275,7 @@ export const NewLineSurvey = () => {
             </Row>
           </>
         )}
-        <Row>
+        <Row form noGutters className="mt-3 mr-1 d-flex justify-content-end">
           <Button color="primary" type="submit" size="lg">
             Create New Line Survey
           </Button>

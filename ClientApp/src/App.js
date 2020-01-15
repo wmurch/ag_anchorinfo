@@ -4,9 +4,8 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { DisplayLineSurvey } from "./components/DisplayLineSurvey";
 import { NewLineSurvey } from "./components/NewLineSurvey";
-import { Filler } from "./components/Filler";
-import { Depallitizer } from "./components/Depallitizer";
-
+import { NewFiller } from "./components/NewFiller";
+import { NewDepallitizer } from "./components/NewDepallitizer";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -17,8 +16,8 @@ export default class App extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/NewLineSurvey" component={NewLineSurvey} />
         <Route path="/DisplayLineSurvey" component={DisplayLineSurvey} />
-        <Route path="/Filler" component={Filler} />
-        <Route path="/Depallitizer" component={Depallitizer} />
+        <Route path="/NewFiller" component={NewFiller} />
+        <Route path="/NewDepallitizer" component={NewDepallitizer} />
       </Layout>
     );
   }

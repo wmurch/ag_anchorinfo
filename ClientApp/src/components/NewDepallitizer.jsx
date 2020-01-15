@@ -17,7 +17,7 @@ import {
 import { useNewFormControls } from "../api/NewFormControlState";
 import { FormMenu } from "./FormMenu";
 import { useService } from "../api/Service";
-export const Depallitizer = () => {
+export const NewDepallitizer = () => {
   const {
     showRinserWater,
     setShowRinserWater,
@@ -433,7 +433,7 @@ export const Depallitizer = () => {
             </Dropdown>
           </Col>
         </Row>
-        <Row>
+        <Row form noGutters className="mt-3 mr-1 d-flex justify-content-end">
           <Button color="primary" type="submit" size="lg">
             Create New Line Survey
           </Button>
