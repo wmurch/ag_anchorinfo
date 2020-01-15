@@ -1,12 +1,12 @@
 dotnet publish -c Release 
 
-cp dockerfile ./bin/release/netcoreapp2.2/publish
+xcopy /y dockerfile .\bin\release\netcoreapp2.2\publish
 
-docker build -t sdg-template-image ./bin/release/netcoreapp2.2/publish
+docker build -t ag_anchorinfo-image ./bin/release/netcoreapp2.2/publish
 
-docker tag sdg-template-image registry.heroku.com/heroku-web-app/web
+docker tag ag_anchorinfo-image registry.heroku.com/aganchorinfo/web
 
-docker push registry.heroku.com/heroku-web-app/web
+docker push registry.heroku.com/aganchorinfo/web
 
-heroku container:release web -a heroku-web-app
+heroku container:release web -a aganchorinfo
 
