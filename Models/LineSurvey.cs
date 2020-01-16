@@ -4,7 +4,7 @@ namespace ag_anchorinfo.Models
 {
     public class LineSurvey
     {
-        public int Id { get; set; }
+        public int LineSurveyId { get; set; }
 
         public string SheetNumber { get; set; }
 
@@ -68,6 +68,10 @@ namespace ag_anchorinfo.Models
 
         public string LSNotes { get; set; }
 
+        public List<LineSurveyLiquor> LineSurveyLiquors { get; set; }
+        public List<LineSurveyFood> LineSurveyFoods { get; set; }
+
+        public List<LineSurveyBeer> LineSurveyBeers { get; set; }
 
     }
 }

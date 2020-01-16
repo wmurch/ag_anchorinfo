@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 namespace ag_anchorinfo.Models
 {
     public class Food
     {
-        public int Id { get; set; }
+        public int FoodId { get; set; }
 
         public string PreHeatTunnelLength { get; set; }
 
@@ -15,6 +16,7 @@ namespace ag_anchorinfo.Models
         public string CoolerZone3 { get; set; }
 
         public string CoolerZone4 { get; set; }
+        public List<LineSurveyFood> LineSurveyFoods { get; set; }
 
     }
 }

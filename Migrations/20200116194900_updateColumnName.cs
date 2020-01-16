@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ag_anchorinfo.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class updateColumnName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,21 @@ namespace ag_anchorinfo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Beers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,7 +57,7 @@ namespace ag_anchorinfo.Migrations
                 name: "LineSurveys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    LineSurveyId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     SheetNumber = table.Column<string>(nullable: true),
                     TopNumber = table.Column<string>(nullable: true),
@@ -79,14 +94,14 @@ namespace ag_anchorinfo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LineSurveys", x => x.Id);
+                    table.PrimaryKey("PK_LineSurveys", x => x.LineSurveyId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Liquors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    LiquorId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CorkerType = table.Column<string>(nullable: true),
                     CorkerDiameter = table.Column<string>(nullable: true),
@@ -94,8 +109,52 @@ namespace ag_anchorinfo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Liquors", x => x.Id);
+                    table.PrimaryKey("PK_Liquors", x => x.LiquorId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ProspectiveCustomers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(nullable: true),
+                    AMEmail = table.Column<string>(nullable: true),
+                    CustomerNumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProspectiveCustomers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LineSurveyLiquor",
+                columns: table => new
+                {
+                    LineSurveyId = table.Column<int>(nullable: false),
+                    LiquorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LineSurveyLiquor", x => new { x.LineSurveyId, x.LiquorId });
+                    table.ForeignKey(
+                        name: "FK_LineSurveyLiquor_LineSurveys_LineSurveyId",
+                        column: x => x.LineSurveyId,
+                        principalTable: "LineSurveys",
+                        principalColumn: "LineSurveyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LineSurveyLiquor_Liquors_LiquorId",
+                        column: x => x.LiquorId,
+                        principalTable: "Liquors",
+                        principalColumn: "LiquorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LineSurveyLiquor_LiquorId",
+                table: "LineSurveyLiquor",
+                column: "LiquorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -104,7 +163,16 @@ namespace ag_anchorinfo.Migrations
                 name: "Beers");
 
             migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
                 name: "Foods");
+
+            migrationBuilder.DropTable(
+                name: "LineSurveyLiquor");
+
+            migrationBuilder.DropTable(
+                name: "ProspectiveCustomers");
 
             migrationBuilder.DropTable(
                 name: "LineSurveys");

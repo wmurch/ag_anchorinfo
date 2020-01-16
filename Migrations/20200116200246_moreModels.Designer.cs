@@ -9,8 +9,8 @@ using ag_anchorinfo;
 namespace ag_anchorinfo.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200116180936_prospectiveCustomer")]
-    partial class prospectiveCustomer
+    [Migration("20200116200246_moreModels")]
+    partial class moreModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,9 +32,25 @@ namespace ag_anchorinfo.Migrations
                     b.ToTable("Beers");
                 });
 
-            modelBuilder.Entity("ag_anchorinfo.Models.Food", b =>
+            modelBuilder.Entity("ag_anchorinfo.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.Food", b =>
+                {
+                    b.Property<int>("FoodId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CoolerZone1");
@@ -49,14 +65,14 @@ namespace ag_anchorinfo.Migrations
 
                     b.Property<string>("PreHeatTunnelLength");
 
-                    b.HasKey("Id");
+                    b.HasKey("FoodId");
 
                     b.ToTable("Foods");
                 });
 
             modelBuilder.Entity("ag_anchorinfo.Models.LineSurvey", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LineSurveyId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("BottomInspection");
@@ -123,14 +139,53 @@ namespace ag_anchorinfo.Migrations
 
                     b.Property<string>("TopNumber");
 
-                    b.HasKey("Id");
+                    b.HasKey("LineSurveyId");
 
                     b.ToTable("LineSurveys");
                 });
 
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyBeer", b =>
+                {
+                    b.Property<int>("LineSurveyId");
+
+                    b.Property<int>("BeerId");
+
+                    b.HasKey("LineSurveyId", "BeerId");
+
+                    b.HasIndex("BeerId");
+
+                    b.ToTable("LineSurveyBeer");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyFood", b =>
+                {
+                    b.Property<int>("LineSurveyId");
+
+                    b.Property<int>("FoodId");
+
+                    b.HasKey("LineSurveyId", "FoodId");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("LineSurveyFood");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyLiquor", b =>
+                {
+                    b.Property<int>("LineSurveyId");
+
+                    b.Property<int>("LiquorId");
+
+                    b.HasKey("LineSurveyId", "LiquorId");
+
+                    b.HasIndex("LiquorId");
+
+                    b.ToTable("LineSurveyLiquor");
+                });
+
             modelBuilder.Entity("ag_anchorinfo.Models.Liquor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LiquorId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CorkerDiameter");
@@ -139,7 +194,7 @@ namespace ag_anchorinfo.Migrations
 
                     b.Property<string>("CorkerType");
 
-                    b.HasKey("Id");
+                    b.HasKey("LiquorId");
 
                     b.ToTable("Liquors");
                 });
@@ -149,6 +204,8 @@ namespace ag_anchorinfo.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AMEmail");
+
                     b.Property<string>("CustomerNumber");
 
                     b.Property<string>("Name");
@@ -156,6 +213,45 @@ namespace ag_anchorinfo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProspectiveCustomers");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyBeer", b =>
+                {
+                    b.HasOne("ag_anchorinfo.Models.Beer", "Beer")
+                        .WithMany("LineSurveyBeers")
+                        .HasForeignKey("BeerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ag_anchorinfo.Models.LineSurvey", "LineSurvey")
+                        .WithMany("LineSurveyBeers")
+                        .HasForeignKey("LineSurveyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyFood", b =>
+                {
+                    b.HasOne("ag_anchorinfo.Models.Food", "Food")
+                        .WithMany("LineSurveyFoods")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ag_anchorinfo.Models.LineSurvey", "LineSurvey")
+                        .WithMany("LineSurveyFoods")
+                        .HasForeignKey("LineSurveyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyLiquor", b =>
+                {
+                    b.HasOne("ag_anchorinfo.Models.LineSurvey", "LineSurvey")
+                        .WithMany("LineSurveyLiquors")
+                        .HasForeignKey("LineSurveyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ag_anchorinfo.Models.Liquor", "Liquor")
+                        .WithMany("LineSurveyLiquors")
+                        .HasForeignKey("LiquorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

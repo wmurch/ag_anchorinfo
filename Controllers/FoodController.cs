@@ -46,7 +46,7 @@ namespace ag_anchorinfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFood(int id, Food food)
         {
-            if (id != food.Id)
+            if (id != food.FoodId)
             {
                 return BadRequest();
             }
@@ -79,7 +79,7 @@ namespace ag_anchorinfo.Controllers
             _context.Foods.Add(food);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFood", new { id = food.Id }, food);
+            return CreatedAtAction("GetFood", new { id = food.FoodId }, food);
         }
 
         // DELETE: api/Food/5
@@ -100,7 +100,7 @@ namespace ag_anchorinfo.Controllers
 
         private bool FoodExists(int id)
         {
-            return _context.Foods.Any(e => e.Id == id);
+            return _context.Foods.Any(e => e.FoodId == id);
         }
     }
 }

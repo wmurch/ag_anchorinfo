@@ -1,0 +1,223 @@
+import * as React from "react";
+import {
+  Row,
+  Form,
+  FormGroup,
+  FormText,
+  Label,
+  Input,
+  Col,
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import { useService } from "../api/Service";
+import { FormMenu } from "./FormMenu";
+
+export const DisplayLineSurvey = () => {
+  const {
+    opportunities,
+    setOpportunities,
+    opportunity,
+    setOpportunity,
+    updateField,
+    data,
+    setData,
+    showLoading,
+    setShowLoading,
+    lineSurvey,
+    setLineSurvey,
+    createLineSurvey,
+    onChange,
+    handleSubmit
+  } = useService();
+  return (
+    <>
+      <FormMenu />
+
+      <Form
+        className="text-primary"
+        onSubmit={e => {
+          createLineSurvey({ lineSurvey });
+          {
+            handleSubmit(e);
+          }
+        }}
+      >
+        <Row form noGutters className="mt-3 d-flex justify-content-start">
+          <FormGroup inline className="m-md-1 p-md-1">
+            <Label className="font-weight-bold">Tech Service Rep</Label>
+            <Input
+              bsSize="sm"
+              type="text"
+              name="techServRep"
+              id="techServRep"
+              value={lineSurvey.techServRep}
+              onChange={onChange}
+            />
+          </FormGroup>
+        </Row>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Col>
+            <FormGroup sm="auto">
+              <Label className="font-weight-bold">Issue Date:</Label>
+              <Input
+                bsSize="sm"
+                type="date"
+                name="issueDate"
+                id="issueDate"
+                value={lineSurvey.issueDate}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup inline className="m-md-1 p-md-1">
+              <Label className="font-weight-bold">Rev. Date:</Label>
+              <Input
+                bsSize="sm"
+                type="date"
+                name="revDate"
+                id="revDate"
+                value={lineSurvey.revDate}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold">Company Name</Label>
+              <Input
+                type="text"
+                placeholder="Company Name"
+                name="companyName"
+                id="companyName"
+                value={lineSurvey.companyName}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold">Address</Label>
+              <Input
+                type="text"
+                placeholder="Address"
+                name="address"
+                id="address"
+                value={lineSurvey.address}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold">City</Label>
+
+              <Input
+                type="text"
+                placeholder="City"
+                name="city"
+                id="city"
+                value={lineSurvey.city}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold">State</Label>
+              <Input
+                type="text"
+                placeholder="State"
+                name="state"
+                id="state"
+                value={lineSurvey.state}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold">Zip</Label>
+              <Input
+                type="text"
+                placeholder="ZipCode"
+                name="zip"
+                id="zip"
+                value={lineSurvey.zip}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Label className="font-weight-bold">Contacts</Label>
+        </Row>
+        <Row form noGutters className="mt-3 d-flex justify-content-center">
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold" hidden>
+                Name
+              </Label>
+
+              <Input
+                type="text"
+                placeholder="Name"
+                name="contacts"
+                id="contacts"
+                value={lineSurvey.contacts}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold" hidden>
+                Phone
+              </Label>
+
+              <Input
+                type="text"
+                bsSize="md"
+                placeholder="Phone"
+                name="phone"
+                id="phone"
+                value={lineSurvey.phone}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="font-weight-bold" hidden>
+                Email
+              </Label>
+              <Input
+                type="text"
+                bsSize="md"
+                placeholder="Email"
+                name="email"
+                id="email"
+                value={lineSurvey.email}
+                onChange={onChange}
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+
+        <Row form noGutters className="mt-3 mr-1 d-flex justify-content-end">
+          <Button color="primary" type="submit" size="md">
+            Edit New Line Survey
+          </Button>
+        </Row>
+      </Form>
+    </>
+  );
+};

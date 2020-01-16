@@ -30,7 +30,7 @@ namespace ag_anchorinfo
             {
                 var envConn = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-                var conn = "server=localhost;database=ag_anchorinfo;User Id=postgres;Password=Nadas0ul299114#";
+                var conn = "server=localhost;database=ag_anchorinfo3;User Id=postgres;Password=Nadas0ul299114#";
                 if (envConn != null)
                 {
                     conn = ConvertPostConnectionToConnectionString(envConn);
@@ -44,13 +44,31 @@ namespace ag_anchorinfo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+            modelBuilder.Entity<LineSurveyLiquor>().HasKey(lsl => new { lsl.LineSurveyId, lsl.LiquorId });
+
+            modelBuilder.Entity<LineSurveyLiquor>().HasOne(ls => ls.LineSurvey).WithMany(l => l.LineSurveyLiquors).HasForeignKey(ls => ls.LineSurveyId);
+
+            modelBuilder.Entity<LineSurveyLiquor>().HasOne(ls => ls.Liquor).WithMany(l => l.LineSurveyLiquors).HasForeignKey(ls => ls.LiquorId);
+
+            modelBuilder.Entity<LineSurveyFood>().HasKey(lsl => new { lsl.LineSurveyId, lsl.FoodId });
+
+            modelBuilder.Entity<LineSurveyFood>().HasOne(ls => ls.LineSurvey).WithMany(l => l.LineSurveyFoods).HasForeignKey(ls => ls.LineSurveyId);
+
+            modelBuilder.Entity<LineSurveyFood>().HasOne(ls => ls.Food).WithMany(l => l.LineSurveyFoods).HasForeignKey(ls => ls.FoodId);
+
+            modelBuilder.Entity<LineSurveyBeer>().HasKey(lsl => new { lsl.LineSurveyId, lsl.BeerId });
+
+            modelBuilder.Entity<LineSurveyBeer>().HasOne(ls => ls.LineSurvey).WithMany(l => l.LineSurveyBeers).HasForeignKey(ls => ls.LineSurveyId);
+
+            modelBuilder.Entity<LineSurveyBeer>().HasOne(ls => ls.Beer).WithMany(l => l.LineSurveyBeers).HasForeignKey(ls => ls.BeerId);
+
         }
+        public DbSet<ProspectiveCustomer> ProspectiveCustomers { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<LineSurvey> LineSurveys { get; set; }
         public DbSet<Beer> Beers { get; set; }
 
         public DbSet<Food> Foods { get; set; }
         public DbSet<Liquor> Liquors { get; set; }
-
-        public DbSet<ProspectiveCustomer> ProspectiveCustomers { get; set; }
     }
 }

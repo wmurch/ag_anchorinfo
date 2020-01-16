@@ -9,8 +9,8 @@ using ag_anchorinfo;
 namespace ag_anchorinfo.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200116180617_initialMigration")]
-    partial class initialMigration
+    [Migration("20200116195156_updateLSLiq")]
+    partial class updateLSLiq
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,22 @@ namespace ag_anchorinfo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Beers");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("ag_anchorinfo.Models.Food", b =>
@@ -56,7 +72,7 @@ namespace ag_anchorinfo.Migrations
 
             modelBuilder.Entity("ag_anchorinfo.Models.LineSurvey", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LineSurveyId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("BottomInspection");
@@ -123,14 +139,27 @@ namespace ag_anchorinfo.Migrations
 
                     b.Property<string>("TopNumber");
 
-                    b.HasKey("Id");
+                    b.HasKey("LineSurveyId");
 
                     b.ToTable("LineSurveys");
                 });
 
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyLiquor", b =>
+                {
+                    b.Property<int>("LineSurveyId");
+
+                    b.Property<int>("LiquorId");
+
+                    b.HasKey("LineSurveyId", "LiquorId");
+
+                    b.HasIndex("LiquorId");
+
+                    b.ToTable("LineSurveyLiquor");
+                });
+
             modelBuilder.Entity("ag_anchorinfo.Models.Liquor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LiquorId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CorkerDiameter");
@@ -139,9 +168,38 @@ namespace ag_anchorinfo.Migrations
 
                     b.Property<string>("CorkerType");
 
-                    b.HasKey("Id");
+                    b.HasKey("LiquorId");
 
                     b.ToTable("Liquors");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.ProspectiveCustomer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AMEmail");
+
+                    b.Property<string>("CustomerNumber");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProspectiveCustomers");
+                });
+
+            modelBuilder.Entity("ag_anchorinfo.Models.LineSurveyLiquor", b =>
+                {
+                    b.HasOne("ag_anchorinfo.Models.LineSurvey", "LineSurvey")
+                        .WithMany("LineSurveyLiquors")
+                        .HasForeignKey("LineSurveyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ag_anchorinfo.Models.Liquor", "Liquor")
+                        .WithMany("LineSurveyLiquors")
+                        .HasForeignKey("LiquorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

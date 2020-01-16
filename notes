@@ -1,14 +1,18 @@
 dotnet aspnet-codegenerator controller -name ContactController -api -m Contact -dc DatabaseContext -outDir Controllers
 dotnet aspnet-codegenerator controller -name ProspectiveCustomerController -api -m ProspectiveCustomer -dc DatabaseContext -outDir Controllers
-dotnet aspnet-codegenerator controller -name LineSurveyController -api -m LineSurvey -dc DatabaseContext -outDir Controllers
-dotnet aspnet-codegenerator controller -name BeerController -api -m Beer -dc DatabaseContext -outDir Controllers
-dotnet aspnet-codegenerator controller -name FoodController -api -m Food -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name LineSurveyBeerController -api -m LineSurveyBeer -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name LineSurveyFoodController -api -m LineSurveyFood -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name LineSurveyLiquorController -api -m LineSurveyLiquor -dc DatabaseContext -outDir Controllers
+
 dotnet aspnet-codegenerator controller -name LiquorController -api -m Liquor -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name FoodController -api -m Food -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name BeerController -api -m Beer -dc DatabaseContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name LineSurveyController -api -m LineSurvey -dc DatabaseContext -outDir Controllers
 
 
-dotnet ef migrations add
+
+dotnet ef migrations add 
 dotnet ef database update
-
 
 psql -d agBusinessDatadb -U postgres
 

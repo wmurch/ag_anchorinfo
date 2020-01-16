@@ -1,22 +1,25 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router'
-import { Layout } from './components/Layout'
-import { Home } from './components/Home'
-import { FetchData } from './components/FetchData'
-import { Counter } from './components/Counter'
-import Testing from './Testing'
+import React, { Component } from "react";
+import { Route } from "react-router";
+import { Layout } from "./components/Layout";
+import { Home } from "./components/Home";
+import { DisplayLineSurvey } from "./components/DisplayLineSurvey";
+import { NewLineSurvey } from "./components/NewLineSurvey";
+import { NewFiller } from "./components/NewFiller";
+import { NewDepallitizer } from "./components/NewDepallitizer";
+import { DisplayFiller } from "./components/DisplayDepallitizer";
 
 export default class App extends Component {
-  static displayName = App.name
+  static displayName = App.name;
 
   render() {
     return (
       <Layout>
         <Route exact path="/" component={Home} />
-        <Route path="/counter" component={Counter} />
-        <Route path="/fetch-data" component={FetchData} />
-        <Route path="/hello" component={Testing} />
+        <Route path="/NewLineSurvey" component={NewLineSurvey} />
+        <Route path="/NewFiller" component={NewFiller} />
+        <Route path="/NewDepallitizer" component={NewDepallitizer} />
+        <Route path="/DisplayLineSurvey" component={DisplayLineSurvey} />
       </Layout>
-    )
+    );
   }
 }

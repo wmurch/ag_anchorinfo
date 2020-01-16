@@ -46,7 +46,7 @@ namespace ag_anchorinfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLineSurvey(int id, LineSurvey lineSurvey)
         {
-            if (id != lineSurvey.Id)
+            if (id != lineSurvey.LineSurveyId)
             {
                 return BadRequest();
             }
@@ -79,7 +79,7 @@ namespace ag_anchorinfo.Controllers
             _context.LineSurveys.Add(lineSurvey);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLineSurvey", new { id = lineSurvey.Id }, lineSurvey);
+            return CreatedAtAction("GetLineSurvey", new { id = lineSurvey.LineSurveyId }, lineSurvey);
         }
 
         // DELETE: api/LineSurvey/5
@@ -100,7 +100,7 @@ namespace ag_anchorinfo.Controllers
 
         private bool LineSurveyExists(int id)
         {
-            return _context.LineSurveys.Any(e => e.Id == id);
+            return _context.LineSurveys.Any(e => e.LineSurveyId == id);
         }
     }
 }
