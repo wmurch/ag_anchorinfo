@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ag_anchorinfo.Models;
 
 namespace ag_anchorinfo
 {
@@ -44,5 +45,12 @@ namespace ag_anchorinfo
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
         }
+        public DbSet<LineSurvey> LineSurveys { get; set; }
+        public DbSet<Beer> Beers { get; set; }
+
+        public DbSet<Food> Foods { get; set; }
+        public DbSet<Liquor> Liquors { get; set; }
+
+        public DbSet<ProspectiveCustomer> ProspectiveCustomers { get; set; }
     }
 }
