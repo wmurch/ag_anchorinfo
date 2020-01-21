@@ -247,21 +247,15 @@ export const NewFiller = () => {
                 >
                   Rotary
                 </DropdownItem>
-                <DropdownItem>Roll Through</DropdownItem>
+                <DropdownItem
+                  name="labelerType"
+                  value={lineSurvey.labelerType}
+                  onClick={onChange}
+                >
+                  Roll Through
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Input
-                type="text"
-                placeholder="Model"
-                name="labelerModel"
-                id="labelerModel"
-                value={lineSurvey.labelerModel}
-                onChange={onChange}
-              />
-            </FormGroup>
           </Col>
           <Col>
             <FormGroup>

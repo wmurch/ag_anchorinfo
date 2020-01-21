@@ -14,7 +14,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import { useService } from "../api/Service";
-import { FormMenu } from "./FormMenu";
+import { DisplayFormMenu } from "../components/DisplayFormMenu";
 
 export const DisplayLineSurvey = () => {
   const {
@@ -35,7 +35,7 @@ export const DisplayLineSurvey = () => {
   } = useService();
   return (
     <>
-      <FormMenu />
+      <DisplayFormMenu />
 
       <Form
         className="text-primary"
@@ -46,176 +46,386 @@ export const DisplayLineSurvey = () => {
           }
         }}
       >
-        <Row form noGutters className="mt-3 d-flex justify-content-start">
-          <FormGroup inline className="m-md-1 p-md-1">
+        <Row form noGutters className="mt-2 d-flex justify-content-center">
+          <Col>
             <Label className="font-weight-bold">Tech Service Rep</Label>
+          </Col>
+          <Col>
             <Input
-              bsSize="sm"
-              type="text"
+              readOnly
+              plaintext
               name="techServRep"
               id="techServRep"
-              value={lineSurvey.techServRep}
-              onChange={onChange}
+              value="Greg Gratzinger"
             />
-          </FormGroup>
-        </Row>
-        <Row form noGutters className="mt-3 d-flex justify-content-center">
-          <Col>
-            <FormGroup sm="auto">
-              <Label className="font-weight-bold">Issue Date:</Label>
-              <Input
-                bsSize="sm"
-                type="date"
-                name="issueDate"
-                id="issueDate"
-                value={lineSurvey.issueDate}
-                onChange={onChange}
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup inline className="m-md-1 p-md-1">
-              <Label className="font-weight-bold">Rev. Date:</Label>
-              <Input
-                bsSize="sm"
-                type="date"
-                name="revDate"
-                id="revDate"
-                value={lineSurvey.revDate}
-                onChange={onChange}
-              />
-            </FormGroup>
           </Col>
         </Row>
-        <Row form noGutters className="mt-3 d-flex justify-content-center">
+        <Row form noGutters className="mt-2 d-flex justify-content-center">
           <Col>
-            <FormGroup>
-              <Label className="font-weight-bold">Company Name</Label>
+            <Row form>
+              <Col>
+                <Label className="font-weight-bold">Issue Date:</Label>
+              </Col>
+              <Col>
+                <Input
+                  readOnly
+                  plaintext
+                  name="issueDate"
+                  id="issueDate"
+                  value="1-4-2020"
+                />
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                <Label className="font-weight-bold">Rev. Date:</Label>
+              </Col>
+              <Col>
+                <Input
+                  readOnly
+                  plaintext
+                  name="revDate"
+                  id="revDate"
+                  value="1-4-2020"
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row
+          form
+          noGutters
+          className="mt-2 d-flex justify-content-center align-content-center"
+        >
+          <Col>
+            <Label className="font-weight-bold">
+              Company Name
               <Input
-                type="text"
-                placeholder="Company Name"
+                plaintext
+                readOnly
                 name="companyName"
                 id="companyName"
-                value={lineSurvey.companyName}
-                onChange={onChange}
+                value="Z&H-BROOKLYN BTLG"
               />
-            </FormGroup>
+            </Label>
           </Col>
           <Col>
-            <FormGroup>
-              <Label className="font-weight-bold">Address</Label>
+            <Label className="font-weight-bold">
+              Address
               <Input
-                type="text"
-                placeholder="Address"
+                plaintext
+                readOnly
                 name="address"
                 id="address"
-                value={lineSurvey.address}
-                onChange={onChange}
+                value="643 SOUTH ROAD Milton NY 12547"
               />
-            </FormGroup>
+            </Label>
           </Col>
         </Row>
-        <Row form noGutters className="mt-3 d-flex justify-content-center">
-          <Col>
-            <FormGroup>
-              <Label className="font-weight-bold">City</Label>
 
-              <Input
-                type="text"
-                placeholder="City"
-                name="city"
-                id="city"
-                value={lineSurvey.city}
-                onChange={onChange}
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label className="font-weight-bold">State</Label>
-              <Input
-                type="text"
-                placeholder="State"
-                name="state"
-                id="state"
-                value={lineSurvey.state}
-                onChange={onChange}
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label className="font-weight-bold">Zip</Label>
-              <Input
-                type="text"
-                placeholder="ZipCode"
-                name="zip"
-                id="zip"
-                value={lineSurvey.zip}
-                onChange={onChange}
-              />
-            </FormGroup>
-          </Col>
-        </Row>
-        <Row form noGutters className="mt-3 d-flex justify-content-center">
+        <Row
+          form
+          noGutters
+          className="mt-2 d-flex justify-content-center align-content-center"
+        >
           <Label className="font-weight-bold">Contacts</Label>
         </Row>
-        <Row form noGutters className="mt-3 d-flex justify-content-center">
+        <Row
+          form
+          noGutters
+          className="mt-2 d-flex justify-content-center align-content-center"
+        >
           <Col>
-            <FormGroup>
-              <Label className="font-weight-bold" hidden>
-                Name
-              </Label>
-
-              <Input
-                type="text"
-                placeholder="Name"
-                name="contacts"
-                id="contacts"
-                value={lineSurvey.contacts}
-                onChange={onChange}
-              />
-            </FormGroup>
+            <Input
+              plaintext
+              readOnly
+              name="contacts"
+              id="contacts"
+              value="Shannon Boromei"
+            />
           </Col>
           <Col>
-            <FormGroup>
-              <Label className="font-weight-bold" hidden>
-                Phone
-              </Label>
-
-              <Input
-                type="text"
-                bsSize="md"
-                placeholder="Phone"
-                name="phone"
-                id="phone"
-                value={lineSurvey.phone}
-                onChange={onChange}
-              />
-            </FormGroup>
+            <Input
+              plaintext
+              readOnly
+              name="phone"
+              id="phone"
+              value="954-652-1234"
+            />
           </Col>
           <Col>
-            <FormGroup>
-              <Label className="font-weight-bold" hidden>
-                Email
-              </Label>
-              <Input
-                type="text"
-                bsSize="md"
-                placeholder="Email"
-                name="email"
-                id="email"
-                value={lineSurvey.email}
-                onChange={onChange}
-              />
-            </FormGroup>
+            <Input
+              plaintext
+              readOnly
+              name="email"
+              id="email"
+              value="shannon.boromei@zhbrooklyn.com"
+            />
+          </Col>
+        </Row>
+        <Row form noGutters className="mt-2 d-flex justify-content-center">
+          <Col>
+            <Row form>
+              <Col>
+                <Label className="font-weight-bold">Future Inspects</Label>
+              </Col>
+              <Col>
+                <Input
+                  plaintext
+                  readOnly
+                  name="incomingInspection"
+                  id="incomingInspection"
+                  value="No"
+                />
+              </Col>
+              <Col>
+                <Label className="font-weight-bold">Plastic Pallets?</Label>
+              </Col>
+              <Col>
+                <Input
+                  plaintext
+                  readOnly
+                  name="plasticPalletsUsed"
+                  id="plasticPalletsUsed"
+                  value="Yes"
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row form noGutters className="mt-2 d-flex justify-content-center">
+          <Col>
+            <Row>
+              <Col>
+                <Label className="font-weight-bold">Line</Label>
+              </Col>
+              <Col>
+                <Input
+                  plaintext
+                  readOnly
+                  name="lineDesignation"
+                  id="lineDesignation"
+                  value="1"
+                />
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                <Label className="font-weight-bold">Stg Duration</Label>
+              </Col>
+              <Col>
+                <Input
+                  plaintext
+                  readOnly
+                  name="wareStageDuration"
+                  id="wareStageDuration"
+                  value="as needed"
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
 
-        <Row form noGutters className="mt-3 mr-1 d-flex justify-content-end">
-          <Button color="primary" type="submit" size="md">
-            Edit New Line Survey
-          </Button>
+        <Row form noGutters className="d-flex justify-content-center">
+          <Col>
+            <Label className="font-weight-bold">
+              Depall Type
+              <Input
+                plaintext
+                readOnly
+                name="depalletizerType"
+                id="depalletizerType"
+                value="Manual Dump"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Depall Model
+              <Input
+                plaintext
+                readOnly
+                name="depalletizerModel"
+                id="depalletizerModel"
+                value="N/A"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Depall Pall Size
+              <Input
+                plaintext
+                readOnly
+                name="depalletizerPalletSize"
+                id="depalletizerPalletSize"
+                value="40x80"
+              />
+            </Label>
+          </Col>
+        </Row>
+        <Row form noGutters className="d-flex justify-content-center">
+          <Col>
+            <Label className="font-weight-bold">
+              # of Grippers
+              <Input
+                plaintext
+                readOnly
+                name="gripperHowMany"
+                id="gripperHowMany"
+                value="N/A"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Gripper Pos
+              <Input
+                plaintext
+                readOnly
+                name="gripperPosition"
+                id="gripperPosition"
+                value="N/A"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Sld Decks Allow
+              <Input
+                plaintext
+                readOnly
+                name="solidDecksAllowable"
+                id="solidDecksAllowable"
+                value="No"
+              />
+            </Label>
+          </Col>
+        </Row>
+        <Row form noGutters className="d-flex justify-content-center">
+          <Col>
+            <Label className="font-weight-bold">
+              Bulk or Cases
+              <Input
+                plaintext
+                readOnly
+                name="bulkCases"
+                id="bulkCases"
+                value="Cases"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              # of Layers
+              <Input plaintext readOnly name="layers" id="layers" value="" />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Bottles/Layer
+              <Input
+                plaintext
+                readOnly
+                name="bottlesLayer"
+                id="bottlesLayer"
+                value=""
+              />
+            </Label>
+          </Col>
+        </Row>
+        <Row form noGutters className="d-flex justify-content-center">
+          <Col>
+            <Label className="font-weight-bold">
+              # of Straps
+              <Input
+                plaintext
+                readOnly
+                name="numberOfStraps"
+                id="numberOfStraps"
+                value="N/A"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Pal Tag Loc
+              <Input
+                plaintext
+                readOnly
+                name="palletTagLocation"
+                id="palletTagLocation"
+                value="Mid"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Finishes
+              <Input
+                plaintext
+                readOnly
+                name="finishes"
+                id="finishes"
+                value="Down"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Flaps
+              <Input
+                plaintext
+                readOnly
+                name="flaps"
+                id="finishes"
+                value="Down"
+              />
+            </Label>
+          </Col>
+        </Row>
+
+        <Row form noGutters className="flex justify-content-center">
+          <Col>
+            <Label className="font-weight-bold">
+              Rinser Type
+              <Input
+                plaintext
+                readOnly
+                name="rinserType"
+                id="rinserType"
+                value="Air"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Rinser Air Type
+              <Input
+                plaintext
+                readOnly
+                name="rinserTwistRotary"
+                id="rinserTwistRotary"
+                value="Rotary"
+              />
+            </Label>
+          </Col>
+          <Col>
+            <Label className="font-weight-bold">
+              Tier Sheets
+              <Input
+                plaintext
+                readOnly
+                name="tierSheets"
+                id="tierSheets"
+                value="Fiberboard"
+              />
+            </Label>
+          </Col>
         </Row>
       </Form>
     </>

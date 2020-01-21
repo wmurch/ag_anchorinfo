@@ -6,7 +6,8 @@ import { DisplayLineSurvey } from "./components/DisplayLineSurvey";
 import { NewLineSurvey } from "./components/NewLineSurvey";
 import { NewFiller } from "./components/NewFiller";
 import { NewDepallitizer } from "./components/NewDepallitizer";
-import { DisplayFiller } from "./components/DisplayDepallitizer";
+import { DisplayDepallitizer } from "./components/DisplayDepallitizer";
+import { DisplayFiller } from "./components/DisplayFiller";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -19,6 +20,8 @@ export default class App extends Component {
         <Route path="/NewFiller" component={NewFiller} />
         <Route path="/NewDepallitizer" component={NewDepallitizer} />
         <Route path="/DisplayLineSurvey" component={DisplayLineSurvey} />
+        <Route path="/DisplayDepallitizer" component={DisplayDepallitizer} />
+        <Route path="/DisplayFiller" component={DisplayFiller} />
       </Layout>
     );
   }
